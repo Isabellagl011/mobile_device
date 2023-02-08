@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Modal,
+  TouchableOpacity,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {DateTimePickerModal} from './src/components/DateTimePickerModal';
@@ -63,6 +64,8 @@ function App(): JSX.Element {
         style={styles.btnStyle}>
         <Text style={styles.btnTxtStyle}>DateTime Button</Text>
       </Pressable>
+
+      
       <DateTimePickerModal
         modalVisibleForm2={modalVisibleForm2}></DateTimePickerModal>
 
@@ -130,5 +133,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textTransform: 'capitalize',
   },
+  
 });
 export default App;
