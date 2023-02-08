@@ -25,7 +25,7 @@ function App(): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.baseText}>Hello</Text>
+      <Text style={styles.baseText}>¡Hello Isabella!</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -39,7 +39,7 @@ function App(): JSX.Element {
         <Text style={styles.btnTxtStyle}>iniciar sesión</Text>
       </Pressable>
 
-      {/* Sección botón2 */}
+      {/* Sección botón2 
       <Pressable
         onPress={() =>
           setTimeout(() => {
@@ -60,7 +60,7 @@ function App(): JSX.Element {
 
       <Pressable
         onPress={() => setModalVisibleForm2(true)}
-        style={styles.btnStyleRed}>
+        style={styles.btnStyle}>
         <Text style={styles.btnTxtStyle}>DateTime Button</Text>
       </Pressable>
       <DateTimePickerModal

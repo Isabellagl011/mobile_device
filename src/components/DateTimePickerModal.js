@@ -1,5 +1,6 @@
 import React from 'react';
-import {Modal, SafeAreaView, Text, View} from 'react-native';
+import {Modal, SafeAreaView, Text, View, StyleSheet} from 'react-native';
+import DatePicker from 'react-native-modern-datepicker';
 
 export const DateTimePickerModal = ({modalVisibleForm2}) => {
   return (
@@ -12,3 +13,11 @@ export const DateTimePickerModal = ({modalVisibleForm2}) => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  labelStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+});
