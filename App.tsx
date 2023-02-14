@@ -2,15 +2,13 @@ import React, {useState} from 'react';
 import {
   Text,
   StyleSheet,
-  View,
+  SafeAreaView,
   TextInput,
   Pressable,
   Modal,
-  TouchableOpacity,
 } from 'react-native';
-import DatePicker from 'react-native-date-picker';
-import {DateTimePickerModal} from './src/components/DateTimePickerModal';
 import {Form} from './src/components/Form';
+import RegisterForm from './src/components/RegisterForm';
 
 function App(): JSX.Element {
   const [text, onChangeText] = useState('Text');
@@ -18,83 +16,70 @@ function App(): JSX.Element {
   const [modalVisible2, setModalVisible2] = useState(false);
   const [modalVisibleForm, setModalVisibleForm] = useState(false);
   const [modalVisibleForm2, setModalVisibleForm2] = useState(false);
-  const newUser = () => {
-    console.log('crear usuario');
-  };
-
-  console.log(modalVisible2);
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.baseText}>¡Hello Isabella!</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.baseText}>Hello</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
       />
-      {/* Sección botón1 */}
       <Pressable
         onPress={() => setModalVisible(!modalVisible)}
-        onLongPress={() => console.log('Please realese me')}
+        onLongPress={() => console.log('Please release me')}
         style={styles.btnStyle}>
-        <Text style={styles.btnTxtStyle}>iniciar sesión</Text>
+        <Text style={styles.btnTxtStyle}>Iniciar sesión</Text>
       </Pressable>
-
-      {/* Sección botón2 
-      <Pressable
+      {/*<Pressable
         onPress={() =>
           setTimeout(() => {
             setModalVisible2(true);
-          }, 2000)
+          }, 1000)
         }
         style={styles.btnStyleRed}>
-        <Text style={styles.btnTxtStyle}>iniciar sesión</Text>
-      </Pressable>
-
-      {/* Sección botón para abrir el formulario */}
+        <Text style={styles.btnTxtStyle}>Mostrar Modal</Text>
+      </Pressable>*/}
       <Pressable
         onPress={() => setModalVisibleForm(true)}
-        style={styles.btnStyleRed}>
-        <Text style={styles.btnTxtStyle}>Registrar usuario</Text>
+        style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Registrar Usuario</Text>
       </Pressable>
-      <Form ModalVisibleForm={modalVisibleForm}></Form>
-
+      <Form
+        modalVisibleForm={modalVisibleForm}
+        setModalVisibleForm={setModalVisibleForm}
+      />
+      <Modal animationType="slide" visible={modalVisible}>
+        <Text>Ventana Modal</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
+      </Modal>
       <Pressable
         onPress={() => setModalVisibleForm2(true)}
-        style={styles.btnStyle}>
-        <Text style={styles.btnTxtStyle}>DateTime Button</Text>
+        style={styles.btnStyleRed}>
+        <Text style={styles.btnTxtStyle}>Formulario de Registro</Text>
       </Pressable>
-
-      
-      <DateTimePickerModal
-        modalVisibleForm2={modalVisibleForm2}></DateTimePickerModal>
-
-      {/* Sección ventana modal */}
-      <Modal animationType="slide" visible={modalVisible}>
-        <Text>Ventana modal</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-      </Modal>
-
-      {/* Modal2 */}
+      <RegisterForm
+        modalVisibleForm2={modalVisibleForm2}
+        setModalVisibleForm2={setModalVisibleForm2}
+      />
       <Modal animationType="fade" visible={modalVisible2}>
-        <Text>Mostrar por 3 seg</Text>
+        <Text>Mostrar por 3 segundos</Text>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }
 
-/*const onPressFunction = () => {
+/* const onPressFunction = () => {
   console.log('Click');
-};*/
+}; */
 
 const styles = StyleSheet.create({
   container: {
@@ -104,11 +89,14 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontSize: 25,
+    /* Alinear Texto */
     textAlign: 'center',
-    fontWeight: '600',
+    /* Negrilla */
     fontFamily: 'MountainsofChristmas-Regular',
+    fontWeight: '600',
   },
   input: {
+    height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -117,15 +105,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#2437DA',
     padding: 20,
     marginTop: 20,
-    marginHorizontal: 10,
-    borderRadius: 10,
+    marginHorizontal: 11,
+    borderRadius: 15,
   },
   btnStyleRed: {
     backgroundColor: '#EA4918',
     padding: 20,
     marginTop: 20,
-    marginHorizontal: 10,
-    borderRadius: 10,
+    marginHorizontal: 11,
+    borderRadius: 15,
   },
   btnTxtStyle: {
     textAlign: 'center',
@@ -133,6 +121,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textTransform: 'capitalize',
   },
-  
 });
+
 export default App;
