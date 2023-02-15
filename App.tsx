@@ -11,6 +11,7 @@ import {Form} from './src/components/Form';
 import RegisterForm from './src/components/RegisterForm';
 
 function App(): JSX.Element {
+  const [users, setusers] = useState([]);
   const [text, onChangeText] = useState('Text');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
@@ -18,7 +19,7 @@ function App(): JSX.Element {
   const [modalVisibleForm2, setModalVisibleForm2] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.baseText}>Hello</Text>
+      <Text style={styles.baseText}>¡Hello Isabella!</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -38,16 +39,16 @@ function App(): JSX.Element {
         }
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Mostrar Modal</Text>
-      </Pressable>*/}
+      </Pressable>
       <Pressable
         onPress={() => setModalVisibleForm(true)}
         style={styles.btnStyle}>
         <Text style={styles.btnTxtStyle}>Registrar Usuario</Text>
-      </Pressable>
-      <Form
+      </Pressable>*/}
+      {/*<Form
         modalVisibleForm={modalVisibleForm}
         setModalVisibleForm={setModalVisibleForm}
-      />
+    />*/}
       <Modal animationType="slide" visible={modalVisible}>
         <Text>Ventana Modal</Text>
         <TextInput
@@ -66,6 +67,18 @@ function App(): JSX.Element {
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Formulario de Registro</Text>
       </Pressable>
+
+      <Pressable
+        onPress={() => setModalVisibleForm(true)}
+        style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Registrar Usuario</Text>
+      </Pressable>
+      <Form
+        modalVisibleForm={modalVisibleForm}
+        setModalVisibleForm={setModalVisibleForm}
+        users={users}
+        setusers={setusers}
+      />
       <RegisterForm
         modalVisibleForm2={modalVisibleForm2}
         setModalVisibleForm2={setModalVisibleForm2}
