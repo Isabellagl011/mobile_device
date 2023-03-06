@@ -75,7 +75,18 @@ export const Form = ({
     setUserEmail('');
     setBirthday(new Date());
   };
-
+  const capturaValorNombre = event => {
+    console.log('nombre' + event);
+    setUserName(event);
+  };
+  const capturaValorEmail = event => {
+    console.log('Email' + event);
+    setUserEmail(event);
+  };
+  const capturaValorNacimiento = event => {
+    console.log('Fecha de nacimiento' + event);
+    setBirthday(event);
+  };
   return (
     <Modal animationType="slide" visible={modalVisibleForm}>
       <Pressable
@@ -97,7 +108,7 @@ export const Form = ({
             placeholder="Nombre de usuario"
             placeholderTextColor={'#203474'}
             value={userName}
-            onChangeText={setUserName}
+            onChangeText={capturaValorNombre}
           />
           <TextInput
             style={styles.input}
@@ -111,7 +122,7 @@ export const Form = ({
             placeholder="Email"
             placeholderTextColor={'#203474'}
             value={userEmail}
-            onChangeText={setUserEmail}
+            onChangeText={capturaValorEmail}
           />
 
           <View style={styles.wrapper}>
@@ -133,8 +144,9 @@ export const Form = ({
             date={birthday}
             locale="es"
             mode="date"
-            onDateChange={date => setBirthday(date)}
+            onDateChange={capturaValorNacimiento}
           />
+
           <Pressable style={styles.btnUserAdd} onPress={handlerNewUser}>
             <Text style={styles.text_btnUserAdd}>Guardar</Text>
           </Pressable>

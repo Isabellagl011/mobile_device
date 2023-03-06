@@ -6,9 +6,13 @@ import {
   TextInput,
   Pressable,
   Modal,
+  FlatList,
 } from 'react-native';
 import {Form} from './src/components/Form';
+import {User} from './src/components/User';
 import RegisterForm from './src/components/RegisterForm';
+import {Superhero} from './src/components/Superhero';
+import {Formpractice} from './src/components/Formpractice';
 
 function App(): JSX.Element {
   const [users, setusers] = useState([]);
@@ -17,21 +21,19 @@ function App(): JSX.Element {
   const [modalVisible2, setModalVisible2] = useState(false);
   const [modalVisibleForm, setModalVisibleForm] = useState(false);
   const [modalVisibleForm2, setModalVisibleForm2] = useState(false);
+  const [modalVisibleFormSH, setModalVisibleFormSH] = useState(false);
+  const [modalVisibleP, setModalVisibleP] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.baseText}>¡Hello Isabella!</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-      />
       <Pressable
         onPress={() => setModalVisible(!modalVisible)}
         onLongPress={() => console.log('Please release me')}
-        style={styles.btnStyle}>
+        style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Iniciar sesión</Text>
       </Pressable>
-      {/*<Pressable
+      {/* <Pressable
         onPress={() =>
           setTimeout(() => {
             setModalVisible2(true);
@@ -39,35 +41,41 @@ function App(): JSX.Element {
         }
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Mostrar Modal</Text>
+      </Pressable>*/}
+
+      <Pressable onPress={() => setModalVisibleP(true)} style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Botón Practice</Text>
       </Pressable>
+      <Formpractice
+        modalVisibleP={modalVisibleP}
+        setModalVisibleP={setModalVisibleP}
+      />
+
       <Pressable
+        onPress={() => setModalVisibleFormSH(true)}
+        style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Botón SuperHero</Text>
+      </Pressable>
+      <Superhero
+        modalVisibleFormSH={modalVisibleFormSH}
+        setModalVisibleFormSH={setModalVisibleFormSH}
+      />
+
+      {/*<Pressable
         onPress={() => setModalVisibleForm(true)}
         style={styles.btnStyle}>
         <Text style={styles.btnTxtStyle}>Registrar Usuario</Text>
-      </Pressable>*/}
-      {/*<Form
+      </Pressable>
+      <Form
         modalVisibleForm={modalVisibleForm}
         setModalVisibleForm={setModalVisibleForm}
     />*/}
-      <Modal animationType="slide" visible={modalVisible}>
-        <Text>Ventana Modal</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-      </Modal>
-      <Pressable
+
+      {/* <Pressable
         onPress={() => setModalVisibleForm2(true)}
         style={styles.btnStyleRed}>
         <Text style={styles.btnTxtStyle}>Formulario de Registro</Text>
-      </Pressable>
-
+    </Pressable>*/}
       <Pressable
         onPress={() => setModalVisibleForm(true)}
         style={styles.btnStyle}>
@@ -76,9 +84,17 @@ function App(): JSX.Element {
       <Form
         modalVisibleForm={modalVisibleForm}
         setModalVisibleForm={setModalVisibleForm}
-        users={users}
-        setusers={setusers}
-      />
+        users={users}></Form>
+      {users.length == 0 ? (
+        <Text>No hay usuarios aún</Text>
+      ) : (
+        <FlatList
+          data={users}
+          renderItem={({item}) => {
+            return <User user_item={user_item}></User>;
+          }}
+        />
+      )}
       <RegisterForm
         modalVisibleForm2={modalVisibleForm2}
         setModalVisibleForm2={setModalVisibleForm2}
@@ -96,7 +112,6 @@ function App(): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     marginHorizontal: 16,
   },
@@ -123,6 +138,13 @@ const styles = StyleSheet.create({
   },
   btnStyleRed: {
     backgroundColor: '#EA4918',
+    padding: 20,
+    marginTop: 20,
+    marginHorizontal: 11,
+    borderRadius: 15,
+  },
+  btnStyleSH: {
+    backgroundColor: '#4FF481',
     padding: 20,
     marginTop: 20,
     marginHorizontal: 11,
